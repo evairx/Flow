@@ -1,22 +1,11 @@
 import { generateSignature } from '../crypto/secret';
-
-interface Config {
-  apiKey: string;
-  secretKey: string;
-  apiURL: string;
-}
-
-interface PaymentResponse {
-  success: boolean;
-  data?: any;
-  error?: string;
-}
+import { Config, PaymentResponse } from '../types/getStatus.types';
 
 export class FlowPaymentService {
   private config: Config;
 
   constructor(config: Config) {
-    if (!config.apiKey || !config.secretKey || !config.apiURL) {
+    if (!config.apiKey || !config.secretKey || !config.apiUrl) {
       throw new Error('Missing required configuration parameters');
     }
     this.config = config;
@@ -43,7 +32,7 @@ export class FlowPaymentService {
 
       const signature = await generateSignature(params, this.config.secretKey);
 
-      const url = new URL(`${this.config.apiURL}/payment/getStatus`);
+      const url = new URL(`${this.config.apiUrl}/payment/getStatus`);
       url.search = new URLSearchParams({
         ...params,
         s: signature
