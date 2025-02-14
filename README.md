@@ -45,6 +45,7 @@ const flow = new Flow({
 ## Guides
 - [Create payment transaction](#create)
 - [Gets the status of a payment order.](#getStatus)
+- [Gets the status of a payment order by commerceOrder](#getStatusByCommerceId)
 
 ## create
 In this way, you can create a payment transaction with Flow
@@ -92,6 +93,36 @@ This way you can get the status of each transaction using the payment token.
 ```js
 const tokenPayment = "A29F46F6E9AE16EEDDA0F8C0598A8FD31B6E040C";
 const data = await flow.getStatus(tokenPayment);
+console.log(data);
+```
+**Output**
+```
+{
+  success: true,
+  data: {
+    flowOrder: 2541015,
+    commerceOrder: '1739475694748',    
+    requestDate: '2025-02-13 16:41:36',
+    status: 1,
+    subject: 'Test Payment',
+    currency: 'CLP',
+    amount: '10000',
+    payer: 'client@gmail.com',
+    optional: null,
+    pending_info: { media: null, date: null },
+    paymentData: {...},
+    merchantId: null
+  }
+}
+```
+
+## getStatusByCommerceId
+In this way, you can obtain the status of each transaction using only the commerceOrder
+
+**Example:**
+```js
+const commerceOrder: '1739475694748';
+const data = await flow.getStatusByCommerceId(commerceOrder);
 console.log(data);
 ```
 **Output**
