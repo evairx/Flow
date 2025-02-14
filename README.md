@@ -7,7 +7,7 @@
 This project is designed to facilitate the use of the most famous payment gateway in Chile [Flow](https://www.flow.cl/) Using [Node](https://nodejs.org/en) or [Bun](https://bun.sh/).
 
 ### Requirements
-- Node.js 16 or higher - requiere ``'node:crypto'``
+- Node.js 19 or higher
 - Bun 1.1.36 or higher
 
 ### Installation
