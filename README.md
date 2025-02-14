@@ -56,7 +56,7 @@ const data = await flow.getStatus(tokenPayment);
 console.log(data);
 ```
 **Output**
-```json
+```
 {
   success: true,
   data: {
