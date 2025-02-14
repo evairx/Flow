@@ -18,6 +18,7 @@
     "paths": {
       "@services/*": ["./services/*"],
       "@crypto/*": ["./crypto/*"],
+      "@utils/*": ["./utils/*"],
     },
   },
 }

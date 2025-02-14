@@ -13,11 +13,13 @@ export const createPayment = async (
   validateNumber(paymentData.amount)
 
   try {
+    const generateId = () => `${Math.floor(20 + Math.random() * 10)}${Math.floor(400000 + Math.random() * 100000)}`;
+
     const params: Record<string, string> = {
         apiKey: config.apiKey,
-        commerceOrder: paymentData.commerceOrder,
+        commerceOrder: paymentData.commerceOrder || generateId(),
         subject: paymentData.subject,
-        currency: paymentData.currency,
+        currency: paymentData.currency || 'CLP',
         amount: validateNumber(paymentData.amount),
         email: paymentData.email,
         urlConfirmation: paymentData.urlConfirmation,
