@@ -1,0 +1,15 @@
+{
+  "name": "@evairx/flow",
+  "version": "1.0.0",
+  "description": "@evairx/Flow facilitates FlowAPI integration into NodeJs",
+  "main": "index.ts",
+  "author": "evairx",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "5.0.0"
+  }
+}
