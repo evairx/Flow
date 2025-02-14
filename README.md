@@ -43,9 +43,48 @@ const flow = new Flow({
 ```
 
 ## Guides
-- [Create payment transaction](#)
+- [Create payment transaction](#create)
 - [Gets the status of a payment order.](#getStatus)
 
+## create
+In this way, you can create a payment transaction with Flow
+
+**Example:**
+```js
+const create = await flow.create({
+	subject: "Test Payment",
+	amount: 5000,
+	email: "client@gmail.com",
+	urlConfirmation: "https://your-website/confirm",
+	urlReturn: "https://your-website/results"
+})
+```
+#### Optional parameters:
+- **``commerceOrder``**: this parameter is generated automatically, but if you want to pass a custom one for example: `uuidv4()`  you can do so.
+- **``currency``**:  por defecto la moneda es ``CLP`` But you can exchange it, only if Flow accepts the currency you want to use..
+
+**Example with optional parameters :**
+```js
+const create = await flow.create({
+	commerceOrder: uuidv4(),
+	subject: "Test Payment",
+	currency: "CLP",
+	amount: 5000,
+	email: "client@gmail.com",
+	urlConfirmation: "https://your-website/confirm",
+	urlReturn: "https://your-website/results"
+})
+```
+**Output**
+```
+{
+  success: true,
+  data: {
+    url: "https://sandbox.flow.cl/app/web/pay.php?token=A29F46F6E9A...040C",
+    flowOrder: 2541015,
+  },
+}
+```
 ## getStatus
 This way you can get the status of each transaction using the payment token.
 
