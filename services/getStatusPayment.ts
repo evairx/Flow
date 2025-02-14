@@ -1,11 +1,11 @@
-import { generateSignature } from '../crypto/secret';
-import { Config, PaymentResponse } from '../types/getStatus.types';
+import { generateSignature } from '@crypto/secret';
+import { Config, PaymentResponse } from '@services/types/payments';
 
 export const isValidToken = (token: string): boolean => {
   return typeof token === 'string' && token.length === 40;
 };
 
-export const getStatus = async (
+export const getStatusPayment = async (
   token: string,
   config: Config
 ): Promise<PaymentResponse> => {
