@@ -35,7 +35,7 @@ import Flow from "@evairx/flow/esm/index.js";
 ```
 2. **Let's instantiate Flow**
 > [!IMPORTANT] 
-> Note that FlowAPI uses 2 different ApiKey and SecretKey, depending if it is for Production or Sandbox.
+> Note that FlowAPI uses 2 different ApiKey and SecretKey, depending if it is for Production or Sandbox. To use the Sandbox mode, change the production parameter to true
 
 ```js
 const flow = new Flow({
