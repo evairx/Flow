@@ -34,6 +34,9 @@ using `import`
 import Flow from "@evairx/flow/esm/index.js";
 ```
 2. **Let's instantiate Flow**
+> [!IMPORTANT] 
+> Note that FlowAPI uses 2 different ApiKey and SecretKey, depending if it is for Production or Sandbox.
+
 ```js
 const flow = new Flow({
 	apiKey: process.env.FLOW_APIKEY || "your-api-key",
@@ -41,9 +44,6 @@ const flow = new Flow({
 	production: true
 });
 ```
-> [!IMPORTANT] 
-> Note that FlowAPI uses 2 different ApiKey and SecretKey, depending if it is for Production or Sandbox.
-
 ## Guides
 - [Create payment transaction](#create)
 - [Gets the status of a payment order.](#getStatus)
