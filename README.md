@@ -38,14 +38,17 @@ import Flow from "@evairx/flow/esm/index.js";
 const flow = new Flow({
 	apiKey: process.env.FLOW_APIKEY || "your-api-key",
 	secretKey: process.env.FLOW_SECRET_KEY || "your-secret-key",
-	apiUrl: process.env.FLOW_APIURL || "https://sandbox.flow.cl/api"
+	production: true
 });
 ```
+> [!IMPORTANT] 
+> Note that FlowAPI uses 2 different ApiKey and SecretKey, depending if it is for Production or Sandbox.
 
 ## Guides
 - [Create payment transaction](#create)
 - [Gets the status of a payment order.](#getStatus)
 - [Gets the status of a payment order by commerceOrder](#getStatusByCommerceId)
+- [Gets the status of a payment order by flowOrder](#getStatusByFlowOrder)
 
 ## create
 In this way, you can create a payment transaction with Flow
