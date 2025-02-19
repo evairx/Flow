@@ -17,10 +17,11 @@ export const createPayment = async (config: Config, paymentData: PaymentParams):
         commerceOrder: paymentData.commerceOrder || generateId(),
         subject: paymentData.subject,
         currency: paymentData.currency || 'CLP',
-        amount: validateNumber(paymentData.amount),
+        amount: validateNumber(paymentData.amount).toString(),
         email: paymentData.email,
         urlConfirmation: paymentData.urlConfirmation,
-        urlReturn: paymentData.urlReturn
+        urlReturn: paymentData.urlReturn,
+        optional: JSON.stringify(paymentData.optional || {}),
     };
 
     const signature = await generateSignature(params, config.secretKey);
@@ -44,7 +45,13 @@ export const createPayment = async (config: Config, paymentData: PaymentParams):
         throw new Error(`Flow API error: ${response.status} - ${errorBody}`);
     }
 
-    const data = await response.json();
+    interface FlowApiResponse {
+      url: string;
+      token: string;
+      flowOrder: string;
+    }
+
+    const data = await response.json() as FlowApiResponse;
 
     if (!data) {
       throw new Error('Empty response received from Flow API');
