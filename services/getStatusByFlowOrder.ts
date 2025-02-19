@@ -1,7 +1,7 @@
 import { generateSignature } from '@crypto/secret';
 import { Config } from '@services/types/payments';
 
-export const getStatusByCommerceId = async (commerceId: string, config: Config) => {
+export const getStatusByFlowOrder = async (flowOrder: string, config: Config) => {
     if (!config.apiKey || !config.secretKey || !config.apiUrl) {
         throw new Error('Missing required configuration parameters');
     }
@@ -9,12 +9,12 @@ export const getStatusByCommerceId = async (commerceId: string, config: Config) 
     try {
         const params: Record<string, string> = {
             apiKey: config.apiKey,
-            commerceId,
+            flowOrder,
         };
 
         const signature = await generateSignature(params, config.secretKey);
 
-        const url = new URL(`${config.apiUrl}/payment/getStatusByCommerceId`);
+        const url = new URL(`${config.apiUrl}/payment/getStatusByFlowOrder`);
         url.search = new URLSearchParams({
         ...params,
         s: signature
