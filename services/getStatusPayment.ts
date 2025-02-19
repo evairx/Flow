@@ -5,10 +5,7 @@ export const isValidToken = (token: string): boolean => {
   return typeof token === 'string' && token.length === 40;
 };
 
-export const getStatusPayment = async (
-  token: string,
-  config: Config
-): Promise<PaymentResponse> => {
+export const getStatusPayment = async (token: string, config: Config ): Promise<PaymentResponse> => {
   if (!config.apiKey || !config.secretKey || !config.apiUrl) {
     throw new Error('Missing required configuration parameters');
   }
@@ -24,7 +21,7 @@ export const getStatusPayment = async (
   try {
     const params: Record<string, string> = {
       apiKey: config.apiKey,
-      token: token,
+      token,
     };
 
     const signature = await generateSignature(params, config.secretKey);
@@ -58,7 +55,6 @@ export const getStatusPayment = async (
       data: data
     };
   } catch (error) {
-    console.error('Error in getStatus:', error instanceof Error ? error.message : 'Unknown error');
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Unknown error'
