@@ -2,10 +2,7 @@ import { generateSignature } from '@crypto/secret';
 import { Config, PaymentResponse, PaymentParams } from '@services/types/payments';
 import { validateNumber } from '@utils/validate'
 
-export const createPayment = async (
-    config: Config,
-    paymentData: PaymentParams
-): Promise<PaymentResponse> => {
+export const createPayment = async (config: Config, paymentData: PaymentParams): Promise<PaymentResponse> => {
   if (!config.apiKey || !config.secretKey || !config.apiUrl) {
     throw new Error('Missing required configuration parameters');
   }
@@ -48,6 +45,10 @@ export const createPayment = async (
     }
 
     const data = await response.json();
+
+    if (!data) {
+      throw new Error('Empty response received from Flow API');
+    }
 
     const res = {
         url: `${data.url}?token=${data.token}`,
